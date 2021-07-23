@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="application/javascript" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" type="application/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/todo.css">
+    <link rel="javascript" type="application/javascript" href="/javascripts/todo.js">
+
+</head>
+<body>
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            
+            <div class="row container d-flex justify-content-center">
+                <div class="col-md-12">
+                    <div class="card px-3">
+                        <div class="card-body">
+                            <h4 class="card-title">Todo list</h4>
+                            <div class="add-items d-flex"><form action="/create" method="POST" >
+                                <input type="text" name="todo" class="form-control todo-list-input" placeholder="Bạn muốn làm gì vào hôm nay?"> 
+                                <input type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn" value="Thêm" />
+                            </form> </div>
+                            <div class="list-wrapper">
+                                <ul class="d-flex flex-column-reverse todo-list">
+                                    
+                                    
+                                    <!-- show to do list -->
+                                    <% for (let [index, data, a] of listbooks.entries() ) { %>
+                                        <tr>
+                                            <li>
+                                                <div class="form-check"> <label class="form-check-label">
+                                                    <input class="checkbox"  onclick='window.location.assign("/update/<%= data.note %>/<%= data.checktodo %>")'
+                                                    <%if (data.checktodo== 1) { %>
+                                                        checked
+                                                    <% } %>
+                                                     type="checkbox" ><%= data.todo %> <i class="input-helper"></i></label> </div> <i onclick='window.location.assign("/delete/<%= data.note %>")' class="remove mdi mdi-close-circle-outline"></i>
+                                            </li>
+                                        </tr>
+                                        <% } %>
+                                    <!--  -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
